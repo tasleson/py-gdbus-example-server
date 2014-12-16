@@ -200,8 +200,7 @@ def handle_set_property(connection, sender, object_path, interface_name, key,
         # TODO Please tell me there is a better way to do this?
         p1 = GLib.Variant('s', str(interface_name))
         p2 = GLib.Variant('a{sv}',
-                          {'Title': GLib.Variant('v',
-                                                 GLib.Variant('s', title))})
+                          {'Title': GLib.Variant('s', title)})
         p3 = GLib.Variant('as', ())
         values = GLib.Variant.new_tuple(p1, p2, p3)
 
