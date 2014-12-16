@@ -242,10 +242,8 @@ def on_timeout_cb(connection):
     # TODO Better way?
     p1 = GLib.Variant('s', "org.gtk.GDBus.TestInterface")
     p2 = GLib.Variant('a{sv}',
-                      {'Foo': GLib.Variant('v',
-                                           GLib.Variant('s', tt_value()[0])),
-                       'Bar': GLib.Variant('v',
-                                           GLib.Variant('s', tt_value()[1]))})
+                      {'Foo': GLib.Variant('s', tt_value()[0]),
+                       'Bar': GLib.Variant('s', tt_value()[1])})
     p3 = GLib.Variant('as', ())
     values = GLib.Variant.new_tuple(p1, p2, p3)
 
