@@ -100,21 +100,21 @@ def handle_method_call(connection, sender, object_path, interface_name,
         greeting = parameters[0]
 
         if greeting == "Return Unregistered":
-            # TODO is this the correct function?
-            # self, domain:int, code:int, message:str)
+            # I believe this is the correct function, return_error is not
+            # available.
             Gio.DBusMethodInvocation.return_error_literal(
                 invocation,
-                60,   # Where is G_IO_ERROR ?
-                30,  # Where is G_IO_ERROR_FAILED_HANDLED ?
+                Gio.io_error_quark(),
+                Gio.IOErrorEnum.FAILED_HANDLED,
                 "As requested, here's a GError not registered "
                 "(G_IO_ERROR_FAILED_HANDLED)")
         elif greeting == "Return Registered":
-            # TODO is this the correct function?
-            # self, domain:int, code:int, message:str)
+            # I believe this is the correct function, return_error is not
+            # available.
             Gio.DBusMethodInvocation.return_error_literal(
                 invocation,
-                60,   # Where is G_IO_ERROR ?
-                21,  # Where is G_DBUS_ERROR_MATCH_RULE_NOT_FOUND ?
+                Gio.DBusError.quark(),
+                Gio.DBusError.MATCH_RULE_NOT_FOUND,
                "As requested, here's a GError that is registered "
                "(G_DBUS_ERROR_MATCH_RULE_NOT_FOUND)")
         elif greeting == "Return Raw":
